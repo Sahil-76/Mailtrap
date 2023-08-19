@@ -40,7 +40,7 @@ class SendMarkdownMail extends Mailable
             markdown: 'emails.markdown',
         );
     }
-
+    
     /**
      * Get the attachments for the message.
      *
