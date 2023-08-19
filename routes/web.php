@@ -1,6 +1,7 @@
 <?php
 
 use App\Mail\SendEmail;
+use App\Jobs\SendTestMailJob;
 use App\Mail\SendMarkdownMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -34,10 +35,23 @@ Route::get('/', function () {
 
 
 //markdown email sent
-Mail::to(users:'test1@test.com')
+/* Mail::to(users:'test1@test.com')
 ->send(new SendMarkdownMail());
 
-echo("mailSend sucessfully");
+echo("mailSend sucessfully"); */
 
-  });
+//queue and jobs
+
+dispatch(function () {
+    Mail::to('test101@test.com')
+        ->send(new SendMarkdownMail());
+})->delay(now()->addSeconds( value:5));
+
+// dispatch(new SendTestMailJob())
+// ->delay(now()->addSeconds(value:5));
+
+ echo("Email sent successfully with a delay of 10 seconds");
+});
+
+
 

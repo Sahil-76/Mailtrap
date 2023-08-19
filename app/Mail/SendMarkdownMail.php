@@ -13,7 +13,7 @@ class SendMarkdownMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-
+ 
  public string $name;
 
     public function __construct()
@@ -22,6 +22,7 @@ class SendMarkdownMail extends Mailable
     }
 
     /**
+     * 
      * Get the message envelope.
      */
     public function envelope(): Envelope
@@ -49,7 +50,7 @@ class SendMarkdownMail extends Mailable
     public function attachments(): array
     {
         return [];
-    }
+    }  
 
 
 public function build()
