@@ -1,8 +1,11 @@
 <?php
 
+use App\Events\SomeoneCheckedProfile;
+use App\Models\User;
 use App\Mail\SendEmail;
 use App\Jobs\SendTestMailJob;
 use App\Mail\SendMarkdownMail;
+use Illuminate\Console\Scheduling\Event;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -17,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get(' /', function () {
     // $data = ['name' => "The test Coder"];
 
     // // Using Laravel Mail Facade
@@ -42,16 +45,18 @@ echo("mailSend sucessfully"); */
 
 //queue and jobs
 
-dispatch(function () {
-    Mail::to('test101@test.com')
-        ->send(new SendMarkdownMail());
-})->delay(now()->addSeconds( value:5));
+// dispatch(function () {
+//     Mail::to('test101@test.com')
+//         ->send(new SendMarkdownMail());
+// })->delay(now()->addSeconds(value:5));
 
 // dispatch(new SendTestMailJob())
 // ->delay(now()->addSeconds(value:5));
 
- echo("Email sent successfully with a delay of 10 seconds");
+//  echo("Email sent successfully with a delay of 5 seconds");
+
+$user=User::inRandomOrder()->first();
+SomeoneCheckedProfile::dispatch($user);
+ echo $user->name. ' your Profile Checked ';
 });
-
-
 

@@ -42,7 +42,7 @@ class SendMarkdownMail extends Mailable
         );
     }
     
-    /**
+    /**  
      * Get the attachments for the message.
      *
      * @return array<int, \Illuminate\Mail\Mailables\Attachment>
@@ -55,7 +55,7 @@ class SendMarkdownMail extends Mailable
 
 public function build()
 {
-    return $this->markdown(view:'emails.markdown');
+    return $this->markdown (view:'emails.markdown');
 }
 
 }
